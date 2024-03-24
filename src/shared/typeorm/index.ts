@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { CreateProducts1710714805597 } from '@shared/typeorm/migrations/1710714805597-CreateProducts';
+import { CreateUsers1711316635135 } from '@shared/typeorm/migrations/1711316635135-CreateUsers';
 import Product from '@modules/products/entities/Product';
+import User from '@modules/users/entities/User';
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -9,8 +11,8 @@ const dataSource = new DataSource({
   username: 'postgres',
   password: 'admin',
   database: 'apivendas',
-  entities: [Product],
-  migrations: [CreateProducts1710714805597],
+  entities: [Product, User],
+  migrations: [CreateProducts1710714805597, CreateUsers1711316635135],
 });
 
 export { dataSource };
