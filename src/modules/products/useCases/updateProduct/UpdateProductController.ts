@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import UpdateProductService from './UpdateProductService';
 
 class UpdateProductController {
-  public async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const { name, price, quantity } = request.body;
 

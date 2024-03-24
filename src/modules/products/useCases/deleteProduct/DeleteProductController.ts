@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import DeleteProductService from './DeleteProductService';
 
 class DeleteProductController {
-  public async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
     const productService = container.resolve(DeleteProductService);

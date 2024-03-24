@@ -19,7 +19,12 @@ class UpdateProductService {
   public async execute({ id, name, price, quantity }: UpdateProductDTO) {
     const product = await this.productRepository.findById(id);
     if (!product) {
-      throw new AppError('Product not found');
+      throw new AppError('Product not found', 404);
+    }
+
+    const productExists = await this.productRepository.findByName(name);
+    if (!productExists && name !== product.name) {
+      throw new AppError('There is alredy product with this name');
     }
 
     product.name = name;
