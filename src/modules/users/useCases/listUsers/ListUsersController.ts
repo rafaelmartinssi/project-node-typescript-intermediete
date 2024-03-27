@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import ListProductsService from './ListProductsService';
+import ListUsersService from './ListUsersService';
 
-class ListProductsController {
+class ListUsersController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const page =
       request.query.page && Number(request.query.page) > 0
@@ -13,12 +13,12 @@ class ListProductsController {
         ? Number(request.query.limit)
         : 10;
 
-    const productService = container.resolve(ListProductsService);
+    const userService = container.resolve(ListUsersService);
 
-    const products = await productService.execute({ page, limit });
+    const users = await userService.execute({ page, limit });
 
-    return response.status(200).json(products);
+    return response.status(200).json(users);
   }
 }
 
-export default ListProductsController;
+export default ListUsersController;

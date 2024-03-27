@@ -21,6 +21,8 @@ export type PaginationProps = {
 
 export interface IUserRepository {
   create({ name, email, password }: CreateUserDTO): Promise<User>;
+  findAll({ page, skip, take }: PaginationParams): Promise<PaginationProps>;
   findByName(name: string): Promise<User | null>;
+  findByEmail(email: string): Promise<User | null>;
   findById(id: string): Promise<User | null>;
 }
