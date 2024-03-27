@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { container } from 'tsyringe';
 import { Joi, Segments, celebrate } from 'celebrate';
+import isAutenticated from '@modules/users/middlewares/isAutenticated';
 import CreateProductController from '@modules/products/useCases/createProduct/CreateProductController';
 import ListProductsController from '../useCases/listProducts/ListProductsController';
 import FindProductController from '../useCases/findProduct/FindProductController';
@@ -16,6 +17,7 @@ const deleteProductController = container.resolve(DeleteProductController);
 
 productsRouter.post(
   '/',
+  isAutenticated,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -30,6 +32,7 @@ productsRouter.post(
 
 productsRouter.put(
   '/:id',
+  isAutenticated,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -47,6 +50,7 @@ productsRouter.put(
 
 productsRouter.get(
   '/',
+  isAutenticated,
   celebrate({
     [Segments.QUERY]: Joi.object().keys({
       page: Joi.number(),
@@ -60,6 +64,7 @@ productsRouter.get(
 
 productsRouter.get(
   '/:id',
+  isAutenticated,
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().uuid().required(),
@@ -72,6 +77,7 @@ productsRouter.get(
 
 productsRouter.delete(
   '/:id',
+  isAutenticated,
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().uuid().required(),
