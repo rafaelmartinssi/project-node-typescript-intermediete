@@ -5,6 +5,7 @@ import {
 } from '@modules/users/repositories/IUserRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import { hash } from 'bcryptjs';
 
 @injectable()
 class CreateUserService {
@@ -23,10 +24,12 @@ class CreateUserService {
       throw new AppError('User email alredy exists');
     }
 
+    const hashedPassword = await hash(password, 8);
+
     return this.userRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
   }
 }
