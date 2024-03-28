@@ -46,6 +46,10 @@ class UserRepository implements IUserRepository {
     return result;
   }
 
+  public async update(user: User): Promise<User> {
+    return this.dataSource.save(user);
+  }
+
   public async findByName(name: string): Promise<User | null> {
     return this.dataSource.findOneBy({ name });
   }
