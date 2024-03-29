@@ -18,8 +18,8 @@ class UserTokenRepository implements IUserTokenRepository {
     return this.dataSource.save(userToken);
   }
 
-  public async findByToken(user_id: string): Promise<UserToken | null> {
-    return this.dataSource.findOneBy({ user_id });
+  public async findByToken(token: string): Promise<UserToken | null> {
+    return this.dataSource.findOneBy({ token });
   }
 }
 
