@@ -32,7 +32,7 @@ class CreateLoginService {
       throw new AppError('Incorrect email or password combination', 401);
     }
 
-    const passwordConfirmed = compare(password, user.password);
+    const passwordConfirmed = await compare(password, user.password);
     if (!passwordConfirmed) {
       throw new AppError('Incorrect email or password combination', 401);
     }
