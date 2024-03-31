@@ -6,6 +6,7 @@ import { CreateCustomers1711916359359 } from './migrations/1711916359359-CreateC
 import Product from '@modules/products/entities/Product';
 import User from '@modules/users/entities/User';
 import UserToken from '@modules/users/entities/UserToken';
+import Customer from '@modules/customers/entities/Customer';
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -14,7 +15,7 @@ const dataSource = new DataSource({
   username: 'postgres',
   password: 'admin',
   database: 'apivendas',
-  entities: [Product, User, UserToken],
+  entities: [Product, User, UserToken, Customer],
   migrations: [
     CreateProducts1710714805597,
     CreateUsers1711316635135,
