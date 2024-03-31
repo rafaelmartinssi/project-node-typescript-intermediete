@@ -52,6 +52,10 @@ class CustomerRepository implements ICustomerRepository {
     return this.dataSource.findOneBy({ name });
   }
 
+  public async findByEmail(email: string): Promise<Customer | null> {
+    return this.dataSource.findOneBy({ email });
+  }
+
   public async findById(id: string): Promise<Customer | null> {
     return this.dataSource.findOneBy({ id });
   }

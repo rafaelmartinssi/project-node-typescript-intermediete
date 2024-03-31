@@ -23,6 +23,7 @@ export interface ICustomerRepository {
   update(customer: Customer): Promise<Customer>;
   findAll({ page, skip, take }: PaginationParams): Promise<PaginationProps>;
   findByName(name: string): Promise<Customer | null>;
+  findByEmail(email: string): Promise<Customer | null>;
   findById(id: string): Promise<Customer | null>;
   delete(id: string): Promise<void>;
 }
