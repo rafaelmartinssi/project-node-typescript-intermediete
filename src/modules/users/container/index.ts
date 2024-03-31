@@ -10,6 +10,8 @@ import SendForgotPasswordEmailController from '../useCases/sendForgotPasswordEma
 import { IUserTokenRepository } from '../repositories/IUserTokenRepository';
 import UserTokenRepository from '../repositories/UserTokenRepository';
 import ResetPasswordController from '../useCases/resetPassword/ResetPasswordController';
+import ShowProfileController from '../useCases/showProfile/ShowProfileController';
+import UpdateProfileController from '../useCases/updateProfile/UpdateProfileController';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 container.registerSingleton<IUserTokenRepository>(
@@ -26,3 +28,5 @@ container.registerSingleton(
   SendForgotPasswordEmailController,
 );
 container.registerSingleton('ResetPasswordController', ResetPasswordController);
+container.registerSingleton('ShowProfileController', ShowProfileController);
+container.registerSingleton('UpdateProfileController', UpdateProfileController);

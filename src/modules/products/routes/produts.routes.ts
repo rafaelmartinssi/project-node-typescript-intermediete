@@ -15,9 +15,10 @@ const findProductController = container.resolve(FindProductController);
 const updateProductController = container.resolve(UpdateProductController);
 const deleteProductController = container.resolve(DeleteProductController);
 
+productsRouter.use(isAutenticated);
+
 productsRouter.post(
   '/',
-  isAutenticated,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -32,7 +33,6 @@ productsRouter.post(
 
 productsRouter.put(
   '/:id',
-  isAutenticated,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -50,7 +50,6 @@ productsRouter.put(
 
 productsRouter.get(
   '/',
-  isAutenticated,
   celebrate({
     [Segments.QUERY]: Joi.object().keys({
       page: Joi.number(),
@@ -64,7 +63,6 @@ productsRouter.get(
 
 productsRouter.get(
   '/:id',
-  isAutenticated,
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().uuid().required(),
@@ -77,7 +75,6 @@ productsRouter.get(
 
 productsRouter.delete(
   '/:id',
-  isAutenticated,
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().uuid().required(),
