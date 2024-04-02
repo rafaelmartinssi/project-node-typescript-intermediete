@@ -7,6 +7,8 @@ import Product from '@modules/products/entities/Product';
 import User from '@modules/users/entities/User';
 import UserToken from '@modules/users/entities/UserToken';
 import Customer from '@modules/customers/entities/Customer';
+import { CreateOrders1712018458651 } from './migrations/1712018458651-CreateOrders';
+import { CreateOrdersProducts1712020451318 } from './migrations/1712020451318-CreateOrdersProducts';
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -21,6 +23,8 @@ const dataSource = new DataSource({
     CreateUsers1711316635135,
     UserTokens1711661823496,
     CreateCustomers1711916359359,
+    CreateOrders1712018458651,
+    CreateOrdersProducts1712020451318,
   ],
 });
 
