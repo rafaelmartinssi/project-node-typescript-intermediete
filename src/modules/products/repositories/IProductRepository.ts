@@ -25,5 +25,6 @@ export interface IProductRepository {
   findAll({ page, skip, take }: PaginationParams): Promise<PaginationProps>;
   findByName(name: string): Promise<Product | null>;
   findById(id: string): Promise<Product | null>;
+  findAllByIds(products: string[]): Promise<Product[]>;
   delete(id: string): Promise<void>;
 }

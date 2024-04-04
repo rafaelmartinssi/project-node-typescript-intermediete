@@ -1,5 +1,5 @@
 import { dataSource } from '@shared/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import Product from '@modules/products/entities/Product';
 import {
   CreateProductDTO,
@@ -59,6 +59,14 @@ class ProductRepository implements IProductRepository {
 
   public async findById(id: string): Promise<Product | null> {
     return this.dataSource.findOneBy({ id });
+  }
+
+  public async findAllByIds(products: string[]): Promise<Product[]> {
+    return this.dataSource.find({
+      where: {
+        id: In(products),
+      },
+    });
   }
 
   public async delete(id: string): Promise<void> {
