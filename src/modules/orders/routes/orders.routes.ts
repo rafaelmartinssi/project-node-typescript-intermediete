@@ -3,9 +3,11 @@ import { container } from 'tsyringe';
 import { Joi, Segments, celebrate } from 'celebrate';
 import isAutenticated from '@modules/users/middlewares/isAutenticated';
 import CreateOrderController from '../useCases/createOrder/CreateOrderController';
+import FindOrderController from '../useCases/findOrder/FindOrdersController';
 
 const ordersRouter = Router();
 const createOrderController = container.resolve(CreateOrderController);
+const findOrderController = container.resolve(FindOrderController);
 
 ordersRouter.use(isAutenticated);
 
@@ -22,6 +24,18 @@ ordersRouter.post(
   }),
   (request, response) => {
     return createOrderController.handle(request, response);
+  },
+);
+
+ordersRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().uuid().required(),
+    }),
+  }),
+  (request, response) => {
+    return findOrderController.handle(request, response);
   },
 );
 
