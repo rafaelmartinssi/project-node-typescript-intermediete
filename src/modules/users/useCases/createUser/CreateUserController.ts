@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateUserService from './CreateUserService';
+import { instanceToInstance } from 'class-transformer';
 
 class CreateUserController {
   public async handle(request: Request, response: Response): Promise<Response> {
@@ -11,7 +12,7 @@ class CreateUserController {
       email,
       password,
     });
-    return response.status(201).json(user);
+    return response.status(201).json(instanceToInstance(user));
   }
 }
 
